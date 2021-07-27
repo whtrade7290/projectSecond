@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.TestMapper">
   
-  <select id="userCheck" resultType="String">
+  <select id="userCheck" resultType="string">
 		SELECT passwd FROM jspdb.testtable WHERE id = #{id}
   </select>
 
