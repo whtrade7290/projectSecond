@@ -16,7 +16,7 @@ public class HomeController {
 	@Autowired
 	TestService testService;
 	
-	@RequestMapping(value = "/", method = RequestMethod.POST)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
 		log.info("home() 호출됨");
 		return "home";
