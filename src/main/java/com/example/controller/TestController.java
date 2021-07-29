@@ -1,20 +1,30 @@
 package com.example.controller;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.domain.TestVo;
 import com.example.service.TestService;
+
 
 import lombok.extern.java.Log;
 @Log
@@ -28,6 +38,11 @@ public class TestController {
 	@GetMapping("/login")
 	public void login() {
 		log.info("Login() 호출됨");
+	}
+	
+	@GetMapping("/join")
+	public void join() {
+		log.info("Join() 호출됨");
 	}
 	
 	@PostMapping("/login")
@@ -56,13 +71,13 @@ public class TestController {
 		
 		session.setAttribute("id", id);
 		
-		if(keepLogin) {
+//		if(keepLogin) {
 			Cookie cookie = new Cookie("id", id);
 			cookie.setMaxAge(60 * 10);
 			cookie.setPath("/");
 			
 			response.addCookie(cookie);
-		}
+//		}
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Location", "/");
@@ -70,6 +85,77 @@ public class TestController {
 		return new ResponseEntity<String>(headers, HttpStatus.FOUND);
 		
 	} // login
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+		
+		log.info("Get Logout() 호출");
+		
+		//세션 초기화
+		session.invalidate();
+		
+		// 로그인 상태유지용 쿠키 삭제
+		Cookie[] cookies = request.getCookies();
+			if(cookies != null) {
+				for(Cookie cookie : cookies) {
+					if(cookie.getName().equals("id")) {
+						cookie.setMaxAge(0); // 유효시간 0
+						cookie.setPath("/"); // 경로는 생성할때와 동일하게 설정해야 삭제됨
+						
+						response.addCookie(cookie); // 삭제할 쿠키정보를 추가
+					}
+				}
+			}
+		
+		
+		return "redirect:/";
+	}//logout
+	
+	
+	@PostMapping("/join")
+	public String join(TestVo testVo){
+		
+		log.info("Post Join() 호출");
+		
+		testService.addMember(testVo);
+		
+		return "redirect:/Test/login";
+	}
+	
+	@GetMapping( value = "/idDupchk", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_ATOM_XML_VALUE})
+	@ResponseBody
+	public Map<String, Boolean> ajaxJoinDupChk(String id){
+		
+		log.info("중복확인 호출");
+		
+		int count = testService.getCountById(id);
+		
+		log.info("count == " + count);
+		
+		Map<String, Boolean> map = new HashMap<>();
+		
+		if(count == 0) {
+			map.put("isIdDup", false);
+		} else {
+			map.put("isIdDup", true);
+		}
+		
+		return map;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 //	@PostMapping("/login")
 //	public ResponseEntity<String> login(String id, String passwd,

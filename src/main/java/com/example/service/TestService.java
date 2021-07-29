@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.domain.TestVo;
 import com.example.mapper.TestMapper;
 
 @Service
@@ -31,6 +32,17 @@ public class TestService {
 		}
 		
 		return check;
+	}
+	
+	// Join
+	public void addMember(TestVo testVo) {
+		testMapper.addMember(testVo);
+	}
+	
+	//IdDupChk
+	public int getCountById(String id) {
+		int count = testMapper.getCountById(id);
+		return count;
 	}
 
 }

@@ -5,8 +5,19 @@
 <mapper namespace="com.example.mapper.TestMapper">
   
   <select id="userCheck" resultType="string">
-		SELECT passwd FROM jspdb.testtable WHERE id = #{id}
+	SELECT passwd FROM jspdb.testtable WHERE id = #{id}
   </select>
+  
+  <insert id="addMember">
+  	INSERT INTO jspdb.testtable (id, passwd) 
+  	VALUES (#{id}, #{passwd})
+  </insert>
+  
+	<!-- 아이디 중복확인 > 아이디가 있으면 1 없으면 0 -->
+	<select id="getCountById" resultType="int">
+		SELECT COUNT(*) FROM jspdb.testtable
+		WHERE id = #{id}
+	</select>
 
   
   

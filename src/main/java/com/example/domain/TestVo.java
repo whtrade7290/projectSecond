@@ -11,6 +11,6 @@ public class TestVo {
 	
 	private int num;
 	private String id;
-	private String name;
+	private String passwd;
 
 }

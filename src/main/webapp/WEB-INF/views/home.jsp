@@ -9,15 +9,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-Hello world!
+<h1>Home</h1><br><br>
+
+Hello world!<br><br>
 
 	<c:choose>
-		<c:when test="${ cookie.id.value == null }">
-			<a href="/Test/login">로그인</a>
-			<input type="text" value="${cookie.id.value }">
+		<c:when test="${ cookie.id.value == null }"><br>
+			<a href="/Test/login">login</a>
+			<a href="/Test/join">Join</a>
 		</c:when>
 		<c:otherwise>
-			<a>로그아웃</a>
+			<a href="/Test/logout">logout</a><br><br>
+			cookie name is : ${cookie.id.value }
+			<br><br>
+			
 		</c:otherwise>
 	</c:choose>
 
