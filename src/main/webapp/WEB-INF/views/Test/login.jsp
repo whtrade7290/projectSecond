@@ -14,7 +14,9 @@
 	id:	<input type=text name=id><br>
 	passwd:	<input type="password" name=passwd>
 	
-	<input type="submit" value="login">
+	<input type="submit" value="login"><br><br>
+	
+	<a href="/">Home</a>
 
 
 	</form>

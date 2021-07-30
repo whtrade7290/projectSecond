@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.domain.TestVo;
 import com.example.service.TestService;
-
+import com.google.gson.Gson;
 
 import lombok.extern.java.Log;
 @Log
@@ -112,15 +112,23 @@ public class TestController {
 	}//logout
 	
 	
-	@PostMapping("/join")
-	public String join(TestVo testVo){
+	@PostMapping(value = "/join", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+	@ResponseBody
+	public void join(HttpServletRequest request) throws IOException{
 		
 		log.info("Post Join() 호출");
 		
+		Gson gson = new Gson();
+		
+		BufferedReader reader = request.getReader();
+		TestVo testVo = gson.fromJson(reader, TestVo.class);
+		
+		reader.close();
+		
 		testService.addMember(testVo);
 		
-		return "redirect:/Test/login";
-	}
+		
+	} //join
 	
 	@GetMapping( value = "/idDupchk", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_ATOM_XML_VALUE})
 	@ResponseBody

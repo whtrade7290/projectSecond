@@ -8,13 +8,27 @@
 </head>
 <body>
 <h1>join</h1>
-	<form id="frm" action="/Test/join" method="Post" name="frm">
-	
-		ID: <input type="text" name="id" v-model="inputIdVal" required><a href="#" v-on:click="idDupChk($event)">중복확인</a><br>
-		<span id="idDubChk">hello</span><br>
-		Passwd : <input type="password" name="passwd"><br>
+	<form id="frm" action="/Test/join" method="Post" name="frm" onsubmit="return submitIdChk();">
+
+		<table>
+			<tr>
+				<td>ID: <input type="text" name="id" v-model="inputIdVal" required>
+				<a href="#" v-on:click="idDupChk($event)">중복확인</a><br>
+				<input type="text" name="checked_id"  value="n" id="submitIdChk">
+				<span id="idChkResult"></span>
+				</td>
+			</tr>
+			<tr>
+				<td>PW : <input type="password" v-model="inputPwVal" name="passwd"></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="Join" v-on:click="btnSubmit"></td>
+			</tr>
 		
-		<input type="submit" value="Join">
+		
+		</table>
+		
+		<a href="/">Home</a>
 	
 	</form>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -25,7 +39,9 @@
 var app = new Vue({
 				el:'#frm',
 				data: {
-					inputIdVal: ''
+					inputIdVal: '',
+					inputPwVal: '',
+					submitIdChk: ''
 				},// data,
 				methods: {
 					idDupChk: function(event){
@@ -38,10 +54,13 @@ var app = new Vue({
 			            	 data: {id : id},
 			            	 success: function (response) {
 			            		 
-			            		 if (responce.isIdDup){
-			            			 $('span#idDupChk').css('color', 'red');
+			            		 
+			            		 
+			            		 if (response.isIdDup){
+			            			 $('span#idChkResult').html('X 이미 사용중인 아이디 입니다.').css('color', 'red');
 			            		 } else {
-			            			 $('span#idDupChk').css('color', 'green');
+			            			 $('span#idChkResult').html('O 사용 가능한 아이디 입니다.').css('color', 'green');
+			            			 $('input[name="checked_id"]').val('y');
 			            		 }
 			            		 
 			            	 },
@@ -52,13 +71,62 @@ var app = new Vue({
 			             });// ajax
 			             
 			             
-					} // idDupChk
+					}, // idDupChk
+					
+					btnSubmit: function(){
+						
+						let submitIdChk = $("#submitIdChk").val();
+						
+						
+
+						if(submitIdChk == 'n'){
+							alert('중복확인을 하세요.');
+			                $("input[name=id]").focus();
+							return;
+						}
+						
+						let obj = {
+								
+								id: this.inputIdVal,
+								passwd: this.inputPwVal
+									
+						};
+						
+						let str = JSON.stringify(obj);
+						
+						alert("str = " + str);
+						
+						$.ajax({
+							
+							url:'/Test/join',
+							data: str,
+							method: 'POST',
+							contentType: 'application/json; charset=UTF-8',
+							success: function(response){
+								console.log(response);
+								
+								// 로그인 페이지로 넘어가도록
+								alert('회원가입 성공');
+								location.href='/Test/login';
+							},
+							
+							error: function(){
+								alert('회원가입 에러 발생...')
+							}
+							
+						});
+						
+						
+						
+					}//btnSubmit
 					
 				}// methods
 	
 });
 
 </script>
+
+
 
 </body>
 </html>
