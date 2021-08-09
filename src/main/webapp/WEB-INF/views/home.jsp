@@ -19,7 +19,9 @@ Hello world!<br><br>
 			<a href="/Test/join">Join</a>
 		</c:when>
 		<c:otherwise>
-			<a href="/Test/logout">logout</a><br><br>
+			<a href="/Test/logout">logout</a>
+			<a href="/Test/board">board</a>
+			<br><br>
 			cookie name is : ${cookie.id.value }
 			<br><br>
 			

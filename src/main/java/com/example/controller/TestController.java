@@ -3,6 +3,7 @@ package com.example.controller;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -16,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.domain.TestVo;
+import com.example.domain.boardVo;
 import com.example.service.TestService;
 import com.google.gson.Gson;
 
@@ -43,6 +46,11 @@ public class TestController {
 	@GetMapping("/join")
 	public void join() {
 		log.info("Join() 호출됨");
+	}
+	
+	@GetMapping("/write")
+	public void write() {
+		log.info("write() 호출됨");
 	}
 	
 	@PostMapping("/login")
@@ -150,6 +158,24 @@ public class TestController {
 		
 		return map;
 		
+	}
+	
+	// 공지사항
+	@GetMapping("/board")
+	public String getBoard(Model model){
+		
+		log.info("getBoard() 호출됨");
+		
+		List<boardVo> boardList = null;
+		
+		boardList = testService.getBoard();
+		
+		log.info("boardList == " + boardList);
+		
+		model.addAttribute("boardList", boardList);
+		
+
+		return "Test/board";
 	}
 	
 	

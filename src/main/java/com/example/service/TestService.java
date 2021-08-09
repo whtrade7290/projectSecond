@@ -1,11 +1,14 @@
 package com.example.service;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.domain.TestVo;
+import com.example.domain.boardVo;
 import com.example.mapper.TestMapper;
 
 @Service
@@ -43,6 +46,12 @@ public class TestService {
 	public int getCountById(String id) {
 		int count = testMapper.getCountById(id);
 		return count;
+	}
+	
+	// board
+	public List<boardVo> getBoard() {
+		return testMapper.getBoard();
+		
 	}
 
 }

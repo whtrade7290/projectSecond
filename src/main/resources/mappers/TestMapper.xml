@@ -18,6 +18,11 @@
 		SELECT COUNT(*) FROM jspdb.testtable
 		WHERE id = #{id}
 	</select>
+	
+	<!-- 게시판 -->
+	<select id="getBoard" resultType="boardVo">
+		SELECT * FROM jspdb.testnotice
+	</select>
 
   
   
