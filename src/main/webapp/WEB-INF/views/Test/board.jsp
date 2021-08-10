@@ -36,7 +36,11 @@
                 </c:otherwise>
 			</c:choose>
 		</table>
-		<input type="button" value="write" onclick="location.href='/Test/write'">
+		<c:if test="${ not empty sessionScope.id}">
+			<input type="button" value="Write" onclick="location.href='/Test/write'">
+		</c:if>
+		
+		<input type="button" value="home" onclick="location.href='/'">
 	</form>
 </body>
 </html>
