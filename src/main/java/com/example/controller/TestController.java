@@ -2,6 +2,7 @@ package com.example.controller;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.domain.TestVo;
-import com.example.domain.boardVo;
+import com.example.domain.BoardVo;
 import com.example.service.TestService;
 import com.google.gson.Gson;
 
@@ -166,7 +167,7 @@ public class TestController {
 		
 		log.info("getBoard() 호출됨");
 		
-		List<boardVo> boardList = null;
+		List<BoardVo> boardList = null;
 		
 		boardList = testService.getBoard();
 		
@@ -176,6 +177,26 @@ public class TestController {
 		
 
 		return "Test/board";
+	}
+	
+	@PostMapping("/boardWrite")
+	public String boardWrite(BoardVo boardVo,HttpSession session) {
+		log.info("boardWrite() 호출됨");
+		
+		boardVo.setDate(new Timestamp(System.currentTimeMillis()));
+		boardVo.setHit(0);
+		String id = (String) session.getAttribute("id");
+		
+		log.info("id == " + id);
+		
+		boardVo.setWriter(id);
+		
+		log.info("boardVo = " + boardVo);
+		
+		testService.boardWrite(boardVo);
+		
+		
+		return "/";
 	}
 	
 	

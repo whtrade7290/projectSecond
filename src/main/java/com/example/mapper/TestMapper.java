@@ -3,7 +3,7 @@ package com.example.mapper;
 import java.util.List;
 
 import com.example.domain.TestVo;
-import com.example.domain.boardVo;
+import com.example.domain.BoardVo;
 
 public interface TestMapper {
 	
@@ -16,7 +16,9 @@ public interface TestMapper {
 	//idDupChk
 	int getCountById(String id);
 
-	List<boardVo> getBoard();
+	List<BoardVo> getBoard();
+
+	void boardWrite(BoardVo boardVo);
 
 
 }

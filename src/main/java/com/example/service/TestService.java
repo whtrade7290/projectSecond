@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.domain.TestVo;
-import com.example.domain.boardVo;
+import com.example.domain.BoardVo;
 import com.example.mapper.TestMapper;
 
 @Service
@@ -49,9 +49,15 @@ public class TestService {
 	}
 	
 	// board
-	public List<boardVo> getBoard() {
+	public List<BoardVo> getBoard() {
 		return testMapper.getBoard();
 		
 	}
+
+	public void boardWrite(BoardVo boardVo) {
+		testMapper.boardWrite(boardVo);
+	}
+
+	
 
 }

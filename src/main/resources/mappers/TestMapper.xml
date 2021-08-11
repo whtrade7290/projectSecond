@@ -23,6 +23,13 @@
 	<select id="getBoard" resultType="boardVo">
 		SELECT * FROM jspdb.testnotice
 	</select>
+	
+	<insert id="boardWrite">
+		
+		INSERT INTO jspdb.testnotice (subject, writer, content) VALUES (#{subject},
+		 ${writer}, ${content})
+		
+	</insert>
 
   
   
