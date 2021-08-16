@@ -26,8 +26,8 @@
 	
 	<insert id="boardWrite">
 		
-		INSERT INTO jspdb.testnotice (subject, writer, content) VALUES (#{subject},
-		 ${writer}, ${content})
+		INSERT INTO jspdb.testnotice (subject, writer, content) 
+		VALUES (#{subject}, #{writer}, #{content})
 		
 	</insert>
 
