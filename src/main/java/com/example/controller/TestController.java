@@ -195,7 +195,9 @@ public class TestController {
 		
 		testService.boardWrite(boardVo);
 		
-	 //  testtest
+	 //  testtesttest
+		 //  testtesttest
+
 		return "redirect:/Test/board";
 	}
 	
