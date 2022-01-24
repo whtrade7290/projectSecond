@@ -25,26 +25,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.domain.TestVo;
+import com.example.domain.MemberVo;
 import com.example.domain.BoardVo;
-import com.example.service.TestService;
+
+import com.example.service.MemberService;
 import com.google.gson.Gson;
 
 import lombok.extern.java.Log;
 @Log
 @Controller
-@RequestMapping("/Test/*")
-public class TestController {
+@RequestMapping("/member/*")
+public class MemberController {
 	
 	@Autowired
-	TestService testService;
+	MemberService testService;
 	
 	@GetMapping("/login")
 	public void login() {
 		log.info("Login() 호출됨");
 	}
 	
-	@GetMapping("/join")
+	@GetMapping("/joinView")
 	public void join() {
 		log.info("Join() 호출됨");
 	}
@@ -55,13 +56,19 @@ public class TestController {
 	}
 	
 	@PostMapping("/login")
-	public ResponseEntity<String> login(String id, String passwd,
+	public ResponseEntity<String> login(String member_id, String member_pw,
 			@RequestParam(defaultValue = "false") boolean keepLogin,
 			HttpSession session, HttpServletResponse response){
 
 		log.info("login() post 호출됨");
 		
-		int check = testService.userCheck(id, passwd);
+		
+		int check = testService.userCheck(member_id, member_pw);
+		
+		
+		
+		log.info("check ==" + check);
+		
 		
 		if(check != 1) {
 			HttpHeaders headers = new HttpHeaders();
@@ -78,10 +85,16 @@ public class TestController {
 
 		}
 		
-		session.setAttribute("id", id);
+		String member_name = testService.userName(member_id);
+		
+		session.setAttribute("member_name", member_name);
+		
+		
+		session.setAttribute("member_id", member_id);
+		
 		
 //		if(keepLogin) {
-			Cookie cookie = new Cookie("id", id);
+			Cookie cookie = new Cookie("member_id", member_id);
 			cookie.setMaxAge(60 * 10);
 			cookie.setPath("/");
 			
@@ -121,7 +134,7 @@ public class TestController {
 	}//logout
 	
 	
-	@PostMapping(value = "/join", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+	@PostMapping(value = "/joinView", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 	@ResponseBody
 	public void join(HttpServletRequest request) throws IOException{
 		
@@ -130,11 +143,13 @@ public class TestController {
 		Gson gson = new Gson();
 		
 		BufferedReader reader = request.getReader();
-		TestVo testVo = gson.fromJson(reader, TestVo.class);
+		MemberVo memverVo = gson.fromJson(reader, MemberVo.class);
+		
+		log.info("memverVo >> " + memverVo);
 		
 		reader.close();
 		
-		testService.addMember(testVo);
+		testService.addMember(memverVo);
 		
 		
 	} //join
@@ -163,10 +178,20 @@ public class TestController {
 	
 	// 공지사항
 	@GetMapping("/board")
-	public String getBoard(Model model){
+	public String getBoard(
+			@RequestParam(defaultValue = "1") int pageNum,
+			@RequestParam(defaultValue = "") String category,
+			@RequestParam(defaultValue = "") String search,
+			Model model){
 		
 		log.info("getBoard() 호출됨");
 		
+		//////////////////////////////////////////////////////
+		
+		int pageSize = 10;
+		
+		int startRow = (pageNum -1) * pageSize;
+		/////////////////////////////////////////////////////
 		List<BoardVo> boardList = null;
 		
 		boardList = testService.getBoard();
@@ -194,11 +219,6 @@ public class TestController {
 		log.info("boardVo = " + boardVo);
 		
 		testService.boardWrite(boardVo);
-		
-	 //  testtesttest
-		 //  testtesttest
-		 //  testtesttest
-	//  testtesttest
 
 		return "redirect:/Test/board";
 	}

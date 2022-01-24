@@ -5,12 +5,17 @@
 <mapper namespace="com.example.mapper.TestMapper">
   
   <select id="userCheck" resultType="string">
-	SELECT passwd FROM jspdb.testtable WHERE id = #{id}
+	SELECT member_pw FROM GUESTMEMBER WHERE MEMBER_ID = #{member_id}
   </select>
   
+  <select id="userName" resultType="string">
+	SELECT member_name FROM GUESTMEMBER WHERE MEMBER_ID = #{member_id}
+  </select>
+  
+  <!-- 회원가입 -->
   <insert id="addMember">
-  	INSERT INTO jspdb.testtable (id, passwd) 
-  	VALUES (#{id}, #{passwd})
+  	INSERT INTO GUESTMEMBER VALUE( MEMBER_NUM, MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_EMAIL, MEMBER_ADDRESS) 
+  	VALUES (MEMBER_SEQ.NEXTVAL,#{member_id}, #{member_pw}, #{member_name}, #{member_email}, #{member_address})
   </insert>
   
 	<!-- 아이디 중복확인 > 아이디가 있으면 1 없으면 0 -->
@@ -30,6 +35,8 @@
 		VALUES (#{subject}, #{writer}, #{content})
 		
 	</insert>
+	
+
 
   
   

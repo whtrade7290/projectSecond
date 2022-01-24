@@ -7,24 +7,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.domain.TestVo;
+import com.example.domain.MemberVo;
 import com.example.domain.BoardVo;
+
 import com.example.mapper.TestMapper;
+
+import lombok.extern.java.Log;
 
 @Service
 @Transactional
-public class TestService {
+@Log
+public class MemberService {
 	
 	@Autowired
 	private TestMapper testMapper;
 	
-	public int userCheck(String id, String passwd) {
-		int check = -1;
+	public int userCheck(String member_id, String member_pw) {
 		
-		String dbpasswd = testMapper.userCheck(id);
+		int check= -1;
 		
-		if(dbpasswd != null) {
-			if(passwd.equals(dbpasswd)) {
+		 String passwd = testMapper.userCheck(member_id);
+		 
+		 log.info("svs check == " + passwd);
+		
+		if(passwd != null) {
+			if(member_pw.equals(passwd)) {
 				check = 1;
 			}else {
 				check = 0;
@@ -38,7 +45,7 @@ public class TestService {
 	}
 	
 	// Join
-	public void addMember(TestVo testVo) {
+	public void addMember(MemberVo testVo) {
 		testMapper.addMember(testVo);
 	}
 	
@@ -57,6 +64,12 @@ public class TestService {
 	public void boardWrite(BoardVo boardVo) {
 		testMapper.boardWrite(boardVo);
 	}
+
+	public String userName(String member_id) {
+		testMapper.userName(member_id);
+		return member_id;
+	}
+	
 
 	
 
