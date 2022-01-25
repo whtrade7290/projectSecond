@@ -21,7 +21,7 @@
     <!-- 헤더 css -->
     <script src="/js/header.js" defer></script>
     <!-- 제이쿼리 & 아작스-->
-    <script src="../script/jquery-3.5.1.js"></script>
+    <script src="/js/jquery-3.5.1.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
@@ -35,7 +35,7 @@
 		               <ul class="member__menu">
 		            		<li><a href="#">${ sessionScope.member_name } 님 :)</a></li>
 		                    <li><a href="">mypage</a></li>
-		                    <li><a href="">reservation</a></li>
+		                    <li><a href="/reservation/calendar">reservation</a></li>
 		                    <li><a href="/member/logout">logout</a></li>
 		               </ul>
 	            	</c:when>
@@ -43,7 +43,7 @@
 	            	   <ul class="member__menu">
 	                   	   <li><a href="/member/login">login</a></li>
 	                       <li><a href="/member/joinView">join</a></li>
-	                       <li><a href="">reservation</a></li>
+	                       <li><a href="/reservation/calendar">reservation</a></li>
                        </ul>
 	            	</c:otherwise>
 	            </c:choose>
@@ -73,7 +73,7 @@
 			                <ul class="member__smallMenu">
 			            		<li><a href="#">${ sessionScope.member_name } 님 :)</a></li>
 			                    <li><a href="">mypage</a></li>
-			                    <li><a href="">reservation</a></li>
+			                    <li><a href="/reservation/calendar">reservation</a></li>
 			                    <li><a href="/member/logout">logout</a></li>
 			               </ul>
 			            </c:when>
@@ -81,7 +81,7 @@
 			             	<ul class="member__smallMenu">
 			                	<li><a href="/member/login">login</a></li>
 			                    <li><a href="/member/joinView">join</a></li>
-			                    <li><a href="">reservation</a></li>
+			                    <li><a href="/reservation/calendar">reservation</a></li>
 			                </ul>
 			            </c:otherwise>
 		            </c:choose>
