@@ -30,7 +30,7 @@
         </style>
     </head>
 
-<body class="">
+<body class="my_calendar">
 
     <div id="calendar" class="fc fc-media-screen fc-direction-ltr fc-theme-standard">
         <div class="fc-header-toolbar fc-toolbar ">
@@ -94,7 +94,7 @@
                                                 <tbody role="presentation">
                                                     <tr role="row">
                                                         <td role="gridcell" class="fc-daygrid-day fc-day fc-day-일요일 fc-day-past fc-day-other" data-date="2020-08-30" aria-labelledby="fc-dom-2">
-                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
+                                                            <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner" id="test">
                                                                 <div class="fc-daygrid-day-top"><a id="fc-dom-2" class="fc-daygrid-day-number" aria-label="August 30, 2020">30</a></div>
                                                                 <div class="fc-daygrid-day-events">
                                                                     <div class="fc-daygrid-day-bottom" style="margin-top: 0px;"></div>
@@ -248,9 +248,9 @@
                                                                 <div class="fc-daygrid-day-bg"></div>
                                                             </div>
                                                         </td>
-                                                        <td role="gridcell" class="fc-daygrid-day fc-day fc-day-금요일 fc-day-past" data-date="2020-09-11" aria-labelledby="fc-dom-26">
+                                                        <td role="gridcell" class="fc-daygrid-day fc-day fc-day-금요일 fc-day-past" id="test11" data-date="2020-09-11" aria-labelledby="fc-dom-26">
                                                             <div class="fc-daygrid-day-frame fc-scrollgrid-sync-inner">
-                                                                <div class="fc-daygrid-day-top"><a id="fc-dom-26" class="fc-daygrid-day-number" aria-label="September 11, 2020">11</a></div>
+                                                                <div class="fc-daygrid-day-top" ><a id="fc-dom-26" class="fc-daygrid-day-number" onclick="text(this)" aria-label="September 11, 2020">11</a></div>
                                                                 <div class="fc-daygrid-day-events">
                                                                     <div class="fc-daygrid-event-harness" style="margin-top: 0px;"><a class="fc-daygrid-event fc-daygrid-block-event fc-h-event fc-event fc-event-draggable fc-event-start fc-event-past">
                                                                             <div class="fc-event-main">
@@ -647,14 +647,52 @@
 
 	let today = new Date();   
 	
-
-
-	$('.fc-daygrid-day').on('click', function(){
-		
-		alert('test');
-        
-	});
 	
+	
+
+
+/* 	$('.fc-daygrid-day-frame').on('click', function(){
+	
+		/* var text = $('.fc-daygrid-day-number').text(); */
+		
+		
+
+/*         var yy=moment.format("YYYY");
+
+        var mm=moment.format("MM");
+
+        var dd=moment.format("DD");
+
+        var ss=moment.format("dd"); */
+        /* var moment = $('#callender').fullCalendar('getDate'); */
+
+		/* var id_check = $(this).attr("id"); */
+        
+/* 	    var childrens = $('fc-daygrid-day-frame').val();   
+        
+		alert('childrens =' + childrens);
+        
+	}); */
+	 
+	
+		  $('.fc-daygrid-day-frame').click(function(){
+			  
+			  var selectTagA = $(this).find('a').text();
+			  var selectDiv = $(this).text('Check In').css('background', '#11468F');
+			  
+			  
+			  
+			  var Test = Number(selectTagA);
+			  
+			  var Test2 = Test + 1;
+			  
+		    alert(Test2);
+		  });
+		
+	
+	
+	
+
 	 document.addEventListener('DOMContentLoaded', function() {
          var calendarEl = document.getElementById('calendar');
 
@@ -673,6 +711,26 @@
          calendar.render();
      }); 
      
+	 
+
+		/* var drag_x1 = false;
+		  $(window).on({ mousedown: function(event) {
+		      drag_x1 = event.offsetX;
+		      $('.fc .fc-highlight').text('Check In').css('background', '#11468F');
+		    },
+		    mouseup: function(event) {
+		      if(event.offsetX - drag_x1 > 100) {
+		    	  $('.fc .fc-highlight').text('Check Out').css('background', '#11468F');
+		      }
+		      if(event.offsetX - drag_x1 < -100) {
+		    	  $('.fc .fc-highlight').text('Check Out').css('background', '#11468F');
+		      }
+		    }
+		  }); */
+		  
+		  
+		  
+		  
 
 
 </script>
