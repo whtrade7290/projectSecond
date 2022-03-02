@@ -55,11 +55,11 @@ public class MemberService {
 		return count;
 	}
 	
-	// board
-	public List<BoardVo> getBoard() {
-		return testMapper.getBoard();
-		
-	}
+//	// board
+//	public List<BoardVo> getBoard() {
+//		return testMapper.getBoard();
+//		
+//	}
 
 	public void boardWrite(BoardVo boardVo) {
 		testMapper.boardWrite(boardVo);

@@ -176,53 +176,53 @@ public class MemberController {
 		
 	}
 	
-	// 공지사항
-	@GetMapping("/board")
-	public String getBoard(
-			@RequestParam(defaultValue = "1") int pageNum,
-			@RequestParam(defaultValue = "") String category,
-			@RequestParam(defaultValue = "") String search,
-			Model model){
-		
-		log.info("getBoard() 호출됨");
-		
-		//////////////////////////////////////////////////////
-		
-		int pageSize = 10;
-		
-		int startRow = (pageNum -1) * pageSize;
-		/////////////////////////////////////////////////////
-		List<BoardVo> boardList = null;
-		
-		boardList = testService.getBoard();
-		
-		log.info("boardList == " + boardList);
-		
-		model.addAttribute("boardList", boardList);
-		
-
-		return "Test/board";
-	}
+//	// 공지사항
+//	@GetMapping("/board")
+//	public String getBoard(
+//			@RequestParam(defaultValue = "1") int pageNum,
+//			@RequestParam(defaultValue = "") String category,
+//			@RequestParam(defaultValue = "") String search,
+//			Model model){
+//		
+//		log.info("getBoard() 호출됨");
+//		
+//		//////////////////////////////////////////////////////
+//		
+//		int pageSize = 10;
+//		
+//		int startRow = (pageNum -1) * pageSize;
+//		/////////////////////////////////////////////////////
+//		List<BoardVo> boardList = null;
+//		
+//		boardList = testService.getBoard();
+//		
+//		log.info("boardList == " + boardList);
+//		
+//		model.addAttribute("boardList", boardList);
+//		
+//
+//		return "Test/board";
+//	}
 	
-	@PostMapping("/boardWrite")
-	public String boardWrite(BoardVo boardVo,HttpSession session) {
-		log.info("boardWrite() 호출됨");
-		
-		boardVo.setDate(new Timestamp(System.currentTimeMillis()));
-		boardVo.setHit(0);
-		String id = (String) session.getAttribute("id");
-		
-		log.info("id == " + id);
-		
-		boardVo.setWriter(id);
-		
-		log.info("boardVo = " + boardVo);
-		
-		testService.boardWrite(boardVo);
-
-		return "redirect:/Test/board";
-	}
-	
+//	@PostMapping("/boardWrite")
+//	public String boardWrite(BoardVo boardVo,HttpSession session) {
+//		log.info("boardWrite() 호출됨");
+//		
+//		boardVo.setDate(new Timestamp(System.currentTimeMillis()));
+//		boardVo.setHit(0);
+//		String id = (String) session.getAttribute("id");
+//		
+//		log.info("id == " + id);
+//		
+//		boardVo.setWriter(id);
+//		
+//		log.info("boardVo = " + boardVo);
+//		
+//		testService.boardWrite(boardVo);
+//
+//		return "redirect:/Test/board";
+//	}
+//	
 	
 	
 	

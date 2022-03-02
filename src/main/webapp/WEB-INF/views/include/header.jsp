@@ -60,8 +60,8 @@
                     <li><a href="">ROOMS</a></li>
                     <li><a href="">SERVICE</a></li>
                     <li><a href="">TRAVEL</a></li>
-                    <li><a href="">RESERVATION</a></li>
-                    <li><a href="">COMMUNITY</a></li>
+                    <li><a href="/reservation/calendar">RESERVATION</a></li>
+                    <li><a href="/community/board">COMMUNITY</a></li>
                 </ul>
                 <ul class="navbar__icons">
                     <li><i class="fab fa-twitter"></i></li>

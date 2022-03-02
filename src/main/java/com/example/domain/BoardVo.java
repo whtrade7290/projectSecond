@@ -7,11 +7,10 @@ import lombok.Data;
 @Data
 public class BoardVo {
 	
-	private int num;
-	private String subject;
-	private String writer;
-	private String content;
+	private int board_num;
+	private String board_id;
+	private String board_title;
+	private String board_content;
 	private Timestamp date;
-	private int hit;
 
 }

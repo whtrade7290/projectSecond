@@ -17,7 +17,7 @@ public interface TestMapper {
 	//idDupChk
 	int getCountById(String id);
 
-	List<BoardVo> getBoard();
+	
 
 	void boardWrite(BoardVo boardVo);
 
