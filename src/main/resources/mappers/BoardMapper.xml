@@ -5,7 +5,10 @@
 <mapper namespace="com.example.mapper.BoardMapper">
   
 	<select id="getBoard" resultType="boardVo">
-		SELECT BOARD_NUM, BOARD_ID, BOARD_TITLE, BOARD_DATE FROM GUESTBOARD
+		SELECT BOARD_NUM, BOARD_ID, BOARD_TITLE, BOARD_DATE
+		FROM GUESTBOARD
+        WHERE ROWNUM <![CDATA[ > ]]> #{startRow} AND ROWNUM <![CDATA[ <= ]]> #{pageSize}
+		ORDER BY ROWNUM ASC
 	</select>
 
   
