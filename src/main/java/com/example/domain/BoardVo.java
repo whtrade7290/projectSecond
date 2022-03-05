@@ -1,16 +1,25 @@
 package com.example.domain;
 
-import java.sql.Timestamp;
 
-import lombok.Data;
 
-@Data
+
+
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
 public class BoardVo {
 	
-	private int board_num;
-	private String board_id;
-	private String board_title;
-	private String board_content;
-	private Timestamp date;
+	private int boardNum;
+	private String boardId;
+	private String boardTitle;
+	private String boardContent;
+	private String boardDate;
+	
+	
 
 }

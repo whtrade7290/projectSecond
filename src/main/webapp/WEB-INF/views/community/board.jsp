@@ -24,12 +24,14 @@
 		<tbody>
 			<c:choose>
 				<c:when test="${ not empty boardList }">
-					<tr>
-						<th>1</th>
-						<th>hello</th>
-						<th>jeong</th>
-						<th>2022.03.02</th>
-				    </tr>
+					<c:forEach var="board" items="${ boardList }">
+						<tr>
+							<th>${ board.boardNum }</th>
+							<th>${ board.boardId }</th>
+							<th>${ board.boardTitle }</th>
+							<th>${ board.boardDate }</th>
+					    </tr>
+					</c:forEach>
 				</c:when>
 				
 				<c:otherwise>

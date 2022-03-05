@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.domain.MemberVo;
 import com.example.domain.BoardVo;
 
-import com.example.mapper.TestMapper;
+import com.example.mapper.MemberMapper;
 
 import lombok.extern.java.Log;
 
@@ -20,7 +20,7 @@ import lombok.extern.java.Log;
 public class MemberService {
 	
 	@Autowired
-	private TestMapper testMapper;
+	private MemberMapper testMapper;
 	
 	public int userCheck(String member_id, String member_pw) {
 		

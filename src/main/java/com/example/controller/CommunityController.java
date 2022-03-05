@@ -29,7 +29,12 @@ public class CommunityController {
 	
 	boardList = boardService.getBoard();
 	
+	log.info("boardList = " + boardList);
+	
+	
 	model.addAttribute("boardList", boardList);
+	
+	
 	
 	return "community/board";
 	}

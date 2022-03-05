@@ -1,12 +1,11 @@
 package com.example.mapper;
 
-import java.util.List;
 
 import com.example.domain.MemberVo;
 import com.example.domain.BoardVo;
 
 
-public interface TestMapper {
+public interface MemberMapper {
 	
 	// Login
 	String userCheck(String member_id);

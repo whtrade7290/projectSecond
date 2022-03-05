@@ -12,18 +12,20 @@ import com.example.domain.BoardVo;
 
 import com.example.mapper.BoardMapper;
 
+import lombok.extern.java.Log;
+
 
 
 
 @Service
 @Transactional
-
+@Log
 public class BoardService {
 	
 	@Autowired
 	private BoardMapper boardMapper;
 	
-	public List<BoardVo> getBoard() {
+	public List<BoardVo> getBoard() {		
 	      return boardMapper.getBoard();
 	   }
 	

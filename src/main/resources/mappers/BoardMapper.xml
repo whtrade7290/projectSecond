@@ -4,8 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.BoardMapper">
   
-	<select id="getBoard" resultType="BoardVo">
-		select * from guestboard
+	<select id="getBoard" resultType="boardVo">
+		SELECT BOARD_NUM, BOARD_ID, BOARD_TITLE, BOARD_DATE FROM GUESTBOARD
 	</select>
 
   

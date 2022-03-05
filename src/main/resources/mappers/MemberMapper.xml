@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.mapper.TestMapper">
+<mapper namespace="com.example.mapper.MemberMapper">
   
   <select id="userCheck" resultType="string">
 	SELECT member_pw FROM GUESTMEMBER WHERE MEMBER_ID = #{member_id}
@@ -25,7 +25,7 @@
 	</select>
 	
 	<!-- 게시판 -->
-	<select id="getBoard" resultType="boardVo">
+	<!-- <select id="getBoard" resultType="boardVo">
 		SELECT * FROM jspdb.testnotice
 	</select>
 	
@@ -34,7 +34,7 @@
 		INSERT INTO jspdb.testnotice (subject, writer, content) 
 		VALUES (#{subject}, #{writer}, #{content})
 		
-	</insert>
+	</insert> -->
 	
 
 
