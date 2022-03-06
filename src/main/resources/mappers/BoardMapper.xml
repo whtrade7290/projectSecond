@@ -10,6 +10,11 @@
         WHERE ROWNUM <![CDATA[ > ]]> #{startRow} AND ROWNUM <![CDATA[ <= ]]> #{pageSize}
 		ORDER BY ROWNUM ASC
 	</select>
+	
+	<select id="getCountBoard" resultType="int">
+		SELECT COUNT(*) 
+		FROM GUESTBOARD
+	</select>
 
   
   

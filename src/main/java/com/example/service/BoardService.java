@@ -34,6 +34,13 @@ public class BoardService {
 		
 	      return boardList;
 	   }
+
+	public int getCountBoard() {
+	
+		int count = boardMapper.getCountBoard();
+		
+		return count;
+	}
 	
 
 	

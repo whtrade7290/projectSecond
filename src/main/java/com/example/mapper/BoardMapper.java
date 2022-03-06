@@ -11,4 +11,6 @@ public interface BoardMapper {
 	
 	List<BoardVo> getBoard(@Param("startRow") int startRow, @Param("pageSize") int pageSize);
 
+	int getCountBoard();
+
 }
