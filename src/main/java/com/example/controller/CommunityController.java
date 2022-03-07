@@ -38,11 +38,12 @@ public class CommunityController {
 	
 	// 사용자가 요청하는 페이지 번호 파라미터 값 가져오기
 	int startRow = (pageNum - 1) * pageSize;
+	int endRow = startRow + pageSize;
 	
 	// 글 목록 가져오기
 	List<BoardVo>boardList = null;
 	if(count > 0) {
-		boardList = boardService.getBoard(startRow, pageSize);
+		boardList = boardService.getBoard(startRow, endRow);
 		log.info("boardList = " + boardList);
 	}
 	
@@ -54,6 +55,7 @@ public class CommunityController {
 		// 글50개. 한화면에보여줄글 10개 => 50/10 = 5 
 		// 글55개. 한화면에보여줄글 10개 => 55/10 = 5 + 1페이지(나머지존재) => 6
 		int pageCount = (count / pageSize) + (count % pageSize == 0 ? 0: 1);
+		log.info("pageCount == " + pageCount);
 		
 		// 한 화면에 보여줄 페이지 갯수 설정
 		int pageBlock = 5;
@@ -78,7 +80,7 @@ public class CommunityController {
 		
 	} // if
 	
-	
+	log.info("pageDto == " + pageDto);
 	
 	
 	model.addAttribute("pageDto", pageDto);

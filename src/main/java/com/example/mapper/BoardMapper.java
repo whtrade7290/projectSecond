@@ -9,7 +9,7 @@ import com.example.domain.BoardVo;
 
 public interface BoardMapper {
 	
-	List<BoardVo> getBoard(@Param("startRow") int startRow, @Param("pageSize") int pageSize);
+	List<BoardVo> getBoard(@Param("startRow") int startRow, @Param("endRow") int endRow);
 
 	int getCountBoard();
 

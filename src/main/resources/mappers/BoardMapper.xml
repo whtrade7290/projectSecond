@@ -5,10 +5,11 @@
 <mapper namespace="com.example.mapper.BoardMapper">
   
 	<select id="getBoard" resultType="boardVo">
-		SELECT BOARD_NUM, BOARD_ID, BOARD_TITLE, BOARD_DATE
-		FROM GUESTBOARD
-        WHERE ROWNUM <![CDATA[ > ]]> #{startRow} AND ROWNUM <![CDATA[ <= ]]> #{pageSize}
-		ORDER BY ROWNUM ASC
+		SELECT BOARD_NUM, BOARD_ID, BOARD_TITLE, BOARD_DATE 
+        FROM (SELECT ROWNUM as rnum, BOARD_NUM, BOARD_ID,
+                               BOARD_TITLE, BOARD_DATE 
+                               FROM GUESTBOARD) 
+        WHERE rnum BETWEEN #{startRow} AND #{endRow}
 	</select>
 	
 	<select id="getCountBoard" resultType="int">

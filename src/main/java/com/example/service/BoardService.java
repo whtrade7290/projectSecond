@@ -25,12 +25,12 @@ public class BoardService {
 	@Autowired
 	private BoardMapper boardMapper;
 	
-	public List<BoardVo> getBoard(int startRow, int pageSize) {	
+	public List<BoardVo> getBoard(int startRow, int endRow) {	
 		
 		log.info("startRow = " + startRow);
-		log.info("pageSize = " + pageSize);
+		log.info("endRow = " + endRow);
 		
-		List<BoardVo> boardList = boardMapper.getBoard(startRow, pageSize);
+		List<BoardVo> boardList = boardMapper.getBoard(startRow, endRow);
 		
 	      return boardList;
 	   }
