@@ -61,7 +61,7 @@
                     <li><a href="">SERVICE</a></li>
                     <li><a href="">TRAVEL</a></li>
                     <li><a href="/reservation/calendar">RESERVATION</a></li>
-                    <li><a href="/community/board">COMMUNITY</a></li>
+                    <li><a href="/community/boardList?pageNum=1">COMMUNITY</a></li>
                 </ul>
                 <ul class="navbar__icons">
                     <li><i class="fab fa-twitter"></i></li>

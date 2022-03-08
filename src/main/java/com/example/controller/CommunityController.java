@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -23,7 +24,7 @@ public class CommunityController {
 	@Autowired
 	BoardService boardService;
 	
-	@GetMapping("/board")
+	@GetMapping("/boardList")
 	public String Community(@RequestParam(defaultValue = "1") int pageNum,Model model) {
 	log.info("Community() 호출됨");
 	
@@ -85,10 +86,34 @@ public class CommunityController {
 	
 	model.addAttribute("pageDto", pageDto);
 	model.addAttribute("boardList", boardList);
+	model.addAttribute("pageNum", pageNum);
 	
 	
 	
 	return "community/board";
+	}// board
+	
+	@GetMapping("/boardWrite")
+	public String boardWrite(int pageNum) {
+		log.info("boardWrite()-Get 호출됨");
+		
+		log.info("pageNum =" + pageNum);
+		
+		return "community/boardWrite";
+	}
+	
+	@PostMapping("/boardWrite")
+	public String boardWrite(BoardVo boardVo, Model model) {
+		
+		log.info("boardWrite()-Post 호출됨");
+		
+		log.info("BoardVo = " + boardVo);
+		int pageNum = (int) model.getAttribute("pageNum");
+		log.info("pageNum = " + pageNum);
+		
+		
+		
+		return "community/board?pageNum="+ pageNum +"";
 	}
 
 }
