@@ -26,8 +26,8 @@
 					<div class="write_form">
 						<div class="write_vew login_view">
 							<form method="post" name="form" id="form" action="/member/login">
-								<input type="text" name="member_id" size="20" tabindex="1" placeholder="아이디를입력해주세요" style="width:300px;" required> 
-								<input type="password"name="member_pw" size="20" tabindex="2" placeholder="비밀번호를입력해주세요" style="width:300px;" required>
+								<input type="text" name="memberId" size="20" tabindex="1" placeholder="아이디를입력해주세요" style="width:300px;" required> 
+								<input type="password"name="memberPw" size="20" tabindex="2" placeholder="비밀번호를입력해주세요" style="width:300px;" required>
 								
 						<div class="checkbox_save">
 							<label class="label_checkbox"> 

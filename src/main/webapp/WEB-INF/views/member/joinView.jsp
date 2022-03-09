@@ -442,11 +442,11 @@
              
              
              let obj = {
-            	   member_id: this.inputIdVal,
-            	   member_pw: this.inputPw,
-            	   member_name: this.inputName,
-            	   member_email: this.inputEmailVal,
-                   member_address : Address
+            	   memberId: this.inputIdVal,
+            	   memberPw: this.inputPw,
+            	   memberName: this.inputName,
+            	   memberEmail: this.inputEmailVal,
+                   memberAddress : Address
              };
              
              

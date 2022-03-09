@@ -19,6 +19,7 @@
     </div>
     <div class="writeDiv">
         <form id="frm" method="post" action="/community/boardWrite">
+        <input type="hidden" name="pageNum" value="${ pageNum }">
             <table style="border: solid 1px brack;">
                 <tbody>
                     <tr>
@@ -28,7 +29,7 @@
 
                     <tr>
                         <th>작성자</th>
-                        <td><input type="text" name="boardId" value="id" readonly></td>
+                        <td><input type="text" name="boardId" value="${ sessionScope.memberId }" readonly></td>
                     </tr>
 
                     <tr>

@@ -13,4 +13,6 @@ public interface BoardMapper {
 
 	int getCountBoard();
 
+	void addBoard(BoardVo boardVo);
+
 }

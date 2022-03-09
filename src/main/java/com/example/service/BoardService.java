@@ -41,6 +41,12 @@ public class BoardService {
 		
 		return count;
 	}
+
+	public void addBoard(BoardVo boardVo) {
+		
+		boardMapper.addBoard(boardVo);
+		
+	}
 	
 
 	

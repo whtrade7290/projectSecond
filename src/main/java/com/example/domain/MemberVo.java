@@ -10,10 +10,10 @@ import lombok.ToString;
 public class MemberVo {
 	
 	private int member_num;
-	private String member_id;
-	private String member_pw;
-	private String member_name;
-	private String member_email;
-	private String member_address;
+	private String memberId;
+	private String memberPw;
+	private String memberName;
+	private String memberEmail;
+	private String memberAddress;
 
 }

@@ -56,14 +56,17 @@ public class MemberController {
 	}
 	
 	@PostMapping("/login")
-	public ResponseEntity<String> login(String member_id, String member_pw,
+	public ResponseEntity<String> login(String memberId, String memberPw,
 			@RequestParam(defaultValue = "false") boolean keepLogin,
 			HttpSession session, HttpServletResponse response){
 
 		log.info("login() post 호출됨");
 		
+		log.info("memberId = " + memberId);
+		log.info("memberPw = " + memberPw);
 		
-		int check = testService.userCheck(member_id, member_pw);
+		
+		int check = testService.userCheck(memberId, memberPw);
 		
 		
 		
@@ -85,16 +88,16 @@ public class MemberController {
 
 		}
 		
-		String member_name = testService.userName(member_id);
+		String member_name = testService.userName(memberId);
 		
 		session.setAttribute("member_name", member_name);
 		
 		
-		session.setAttribute("member_id", member_id);
+		session.setAttribute("memberId", memberId);
 		
 		
 //		if(keepLogin) {
-			Cookie cookie = new Cookie("member_id", member_id);
+			Cookie cookie = new Cookie("memberId", memberId);
 			cookie.setMaxAge(60 * 10);
 			cookie.setPath("/");
 			

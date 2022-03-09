@@ -20,6 +20,8 @@ public class BoardVo {
 	private String boardContent;
 	private String boardDate;
 	
+	private String pageNum;
+	
 	
 
 }

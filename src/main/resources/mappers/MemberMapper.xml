@@ -5,17 +5,17 @@
 <mapper namespace="com.example.mapper.MemberMapper">
   
   <select id="userCheck" resultType="string">
-	SELECT member_pw FROM GUESTMEMBER WHERE MEMBER_ID = #{member_id}
+	SELECT MEMBER_PW FROM GUESTMEMBER WHERE MEMBER_ID = #{memberId}
   </select>
   
   <select id="userName" resultType="string">
-	SELECT member_name FROM GUESTMEMBER WHERE MEMBER_ID = #{member_id}
+	SELECT MEMBER_NAME FROM GUESTMEMBER WHERE MEMBER_ID = #{memberId}
   </select>
   
   <!-- 회원가입 -->
   <insert id="addMember">
   	INSERT INTO GUESTMEMBER VALUE( MEMBER_NUM, MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_EMAIL, MEMBER_ADDRESS) 
-  	VALUES (MEMBER_SEQ.NEXTVAL,#{member_id}, #{member_pw}, #{member_name}, #{member_email}, #{member_address})
+  	VALUES (MEMBER_SEQ.NEXTVAL,#{memberId}, #{memberPw}, #{memberName}, #{memberEmail}, #{memberAddress})
   </insert>
   
 	<!-- 아이디 중복확인 > 아이디가 있으면 1 없으면 0 -->

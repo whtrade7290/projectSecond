@@ -2,10 +2,13 @@ package com.example.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -94,26 +97,32 @@ public class CommunityController {
 	}// board
 	
 	@GetMapping("/boardWrite")
-	public String boardWrite(int pageNum) {
+	public String boardWrite(@ModelAttribute("pageNum") String pageNum, HttpSession session) {
 		log.info("boardWrite()-Get 호출됨");
 		
 		log.info("pageNum =" + pageNum);
+		
+		log.info("sessionID =" + session.getAttribute("member_id"));
 		
 		return "community/boardWrite";
 	}
 	
 	@PostMapping("/boardWrite")
-	public String boardWrite(BoardVo boardVo, Model model) {
+	public String boardWrite(BoardVo boardVo) {
 		
 		log.info("boardWrite()-Post 호출됨");
 		
 		log.info("BoardVo = " + boardVo);
-		int pageNum = (int) model.getAttribute("pageNum");
-		log.info("pageNum = " + pageNum);
+		
+		String pageNum = boardVo.getPageNum();
+		
+		log.info("pageNum =" + pageNum);
+		
+		boardService.addBoard(boardVo);
 		
 		
 		
-		return "community/board?pageNum="+ pageNum +"";
+		return "redirect:/community/boardList?pageNum="+ pageNum +"";
 	}
 
 }
