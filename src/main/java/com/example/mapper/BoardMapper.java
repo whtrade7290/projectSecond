@@ -15,4 +15,6 @@ public interface BoardMapper {
 
 	void addBoard(BoardVo boardVo);
 
+	BoardVo getBoardByNum(int boardNum);
+
 }

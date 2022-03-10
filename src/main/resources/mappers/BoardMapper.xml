@@ -17,6 +17,12 @@
 		FROM GUESTBOARD
 	</select>
 	
+	<select id="getBoardByNum" resultType="boardVo">
+       SELECT *
+       FROM GUESTBOARD
+       WHERE BOARD_NUM = #{boardNum}
+    </select>
+	
 	<insert id="addBoard">
 		INSERT INTO GUESTBOARD
 		(BOARD_NUM, BOARD_ID, BOARD_TITLE, BOARD_CONTENT, BOARD_DATE) 

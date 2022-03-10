@@ -124,5 +124,41 @@ public class CommunityController {
 		
 		return "redirect:/community/boardList?pageNum="+ pageNum +"";
 	}
+	
+	@GetMapping("/boardContent")
+	public String boardContent(String pageNum, int boardNum, Model model) {
+		
+		log.info("boardContent()-Get 호출됨");
+		
+		log.info("pageNum = " + pageNum);
+		
+		log.info("boardNum = " + boardNum);
+		
+		BoardVo boardVo = boardService.getBoardByNum(boardNum);
+		
+		log.info("boardVo = " + boardVo);
+		
+		model.addAttribute("boardVo", boardVo);
+		model.addAttribute("pageNum", pageNum);
+		
+		return "community/boardContent";
+	}
+	
+	@GetMapping("/boardUpdate")
+	public String boardUpdate(String pageNum, int boardNum, Model model) {
+		
+		log.info("boardUpdate()-Get 호출됨");
+		
+		log.info("pageNum = " + pageNum);
+		
+		log.info("boardNum = " + boardNum);
+		
+		BoardVo boardVo = boardService.getBoardByNum(boardNum);
+		
+		log.info("boardVo = " + boardVo);
+		
+		return"/community/boardUpdate";
+		
+	}
 
 }

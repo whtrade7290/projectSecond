@@ -47,6 +47,11 @@ public class BoardService {
 		boardMapper.addBoard(boardVo);
 		
 	}
+
+	public BoardVo getBoardByNum(int boardNum) {
+		BoardVo boardVo = boardMapper.getBoardByNum(boardNum);
+		return boardVo;
+	}
 	
 
 	

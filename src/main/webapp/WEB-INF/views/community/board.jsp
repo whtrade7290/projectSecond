@@ -30,7 +30,9 @@
                     <c:forEach var="board" items="${ boardList }">
                         <tr>
                             <td class="boardTd" colspan="1" style="width: 5%;">${ board.boardNum }</td>
-                            <td class="boardTd" colspan="2">${ board.boardTitle }</td>
+                            <td class="boardTd" colspan="2">
+                            	<a href="/community/boardContent?pageNum=${ pageNum }&boardNum=${board.boardNum}">${ board.boardTitle }</a>
+                            </td>
                             <td class="boardTd" colspan="1" style="width: 20%;">${ board.boardId }</td>
                             <td class="boardTd" colspan="1" style="width: 15%;">${ board.boardDate }</td>
                             <td class="boardTd" colspan="1" style="width: 15%;">조회수</td>
