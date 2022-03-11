@@ -108,31 +108,52 @@ public class CommunityController {
 	}
 	
 	@PostMapping("/boardWrite")
-	public String boardWrite(BoardVo boardVo) {
+	public String boardWrite(BoardVo boardVo, Model model) {
 		
 		log.info("boardWrite()-Post 호출됨");
-		
-		log.info("BoardVo = " + boardVo);
-		
+//		
+//		log.info("BoardVo = " + boardVo);
+//		
 		String pageNum = boardVo.getPageNum();
+//		
+//		log.info("pageNum =" + pageNum);
 		
-		log.info("pageNum =" + pageNum);
+		int nextNum = boardService.getNextNum();
 		
+		log.info("(Controller)nextNum =" + nextNum);
+//		
 		boardService.addBoard(boardVo);
+//		
+//		log.info("boardVo.getUserSeq() = " + boardVo.getUserSeq());
+//		
+//		
 		
-		
-		
-		return "redirect:/community/boardList?pageNum="+ pageNum +"";
+		return "redirect:/community/boardContent?pageNum="+ pageNum +"&boardNum="+ nextNum +"";
 	}
 	
 	@GetMapping("/boardContent")
-	public String boardContent(String pageNum, int boardNum, Model model) {
+	public String boardContent(String pageNum, int boardNum, Model model, HttpSession session) {
 		
 		log.info("boardContent()-Get 호출됨");
 		
 		log.info("pageNum = " + pageNum);
 		
 		log.info("boardNum = " + boardNum);
+		
+		String currentId = null;
+		
+		String sessionId = (String) session.getAttribute("memberId");
+				
+		log.info("sessionId =" + sessionId);		
+		
+		
+		
+		// 조회수 중복 방지 해야함
+			boardService.updateReadCount(boardNum);
+			
+	
+		
+		
 		
 		BoardVo boardVo = boardService.getBoardByNum(boardNum);
 		
@@ -145,7 +166,7 @@ public class CommunityController {
 	}
 	
 	@GetMapping("/boardUpdate")
-	public String boardUpdate(String pageNum, int boardNum, Model model) {
+	public String boardUpdate(@ModelAttribute("pageNum") String pageNum, int boardNum, Model model) {
 		
 		log.info("boardUpdate()-Get 호출됨");
 		
@@ -157,8 +178,28 @@ public class CommunityController {
 		
 		log.info("boardVo = " + boardVo);
 		
+		model.addAttribute("boardVo", boardVo);
+		
 		return"/community/boardUpdate";
 		
+	}
+	
+	@PostMapping("/boardUpdate")
+	public String boardUpdate(BoardVo boardVo) {
+		
+		log.info("boardUpdate()-Post 호출됨");
+		
+		log.info("BoardVo = " + boardVo);
+		
+		String pageNum = boardVo.getPageNum();
+		
+		log.info("pageNum =" + pageNum);
+		
+		boardService.updateBoard(boardVo);
+		
+		
+		
+		return "redirect:/community/boardList?pageNum="+ pageNum +"";
 	}
 
 }

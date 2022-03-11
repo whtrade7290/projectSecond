@@ -42,16 +42,40 @@ public class BoardService {
 		return count;
 	}
 
-	public void addBoard(BoardVo boardVo) {
+	public int addBoard(BoardVo boardVo) {
 		
-		boardMapper.addBoard(boardVo);
+		int test = boardMapper.addBoard(boardVo);
 		
+		
+		log.info("(service end)board Num = " + boardVo.getBoardNum());
+		
+		return test;
 	}
 
 	public BoardVo getBoardByNum(int boardNum) {
 		BoardVo boardVo = boardMapper.getBoardByNum(boardNum);
 		return boardVo;
 	}
+
+	public void updateBoard(BoardVo boardVo) {
+		
+		boardMapper.updateBoard(boardVo);
+		
+	}
+	
+	public int getNextNum() {
+		
+		int nextNum = boardMapper.getNextNum();
+		
+		
+		return nextNum;
+	}
+	
+	public void updateReadCount(int boardNum) {
+		
+		boardMapper.updateReadCount(boardNum);
+	}
+	
 	
 
 	

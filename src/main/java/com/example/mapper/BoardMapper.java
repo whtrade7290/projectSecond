@@ -13,8 +13,14 @@ public interface BoardMapper {
 
 	int getCountBoard();
 
-	void addBoard(BoardVo boardVo);
+	int addBoard(BoardVo boardVo);
 
 	BoardVo getBoardByNum(int boardNum);
+
+	void updateBoard(BoardVo boardVo);
+	
+	int getNextNum();
+	
+	void updateReadCount(int boardNum);
 
 }

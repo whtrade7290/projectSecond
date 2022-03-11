@@ -19,7 +19,7 @@ public class BoardVo {
 	private String boardTitle;
 	private String boardContent;
 	private String boardDate;
-	
+	private int boardHit;
 	private String pageNum;
 	
 	

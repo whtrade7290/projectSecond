@@ -26,7 +26,7 @@
                         <th>글번호</th>
                         <td>${ boardVo.boardNum }</td>
                         <th>조회수</th>
-                        <td>121</td>
+                        <td>${ boardVo.boardHit }</td>
                         <th>작성자</th>
                         <td>${ boardVo.boardId }</td>
                     </tr>
@@ -40,7 +40,7 @@
 
                     <tr>
                         <th colspan="1">내용</th>
-                        <td colspan="5" class="contentTd">test1</td>
+                        <td colspan="5" class="contentTd">${ boardVo.boardContent }</td>
                     </tr>
                 </tbody>
             </table>
@@ -49,6 +49,7 @@
                 <a href="/community/boardList?pageNum=${ pageNum }" class="btnList">목록</a>
                 <!-- 추후 글쓴 사람만 수정 가능하도록 -->
                 <a href="/community/boardUpdate?pageNum=${ pageNum }&boardNum=${ boardVo.boardNum }" class="btnList">수정</a>
+                <a href="/community/boardList?pageNum=${ pageNum }" class="btnList">글삭제</a>
             </div>
     
         </form>

@@ -35,7 +35,7 @@
                             </td>
                             <td class="boardTd" colspan="1" style="width: 20%;">${ board.boardId }</td>
                             <td class="boardTd" colspan="1" style="width: 15%;">${ board.boardDate }</td>
-                            <td class="boardTd" colspan="1" style="width: 15%;">조회수</td>
+                            <td class="boardTd" colspan="1" style="width: 15%;">${ board.boardHit }</td>
                         </tr>
                     </c:forEach>
                 </c:when>

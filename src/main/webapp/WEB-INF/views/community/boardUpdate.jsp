@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <title>글수정</title>
-    <link rel="stylesheet" href="/css/boardWrite.css">
+    <link rel="stylesheet" href="/css/boardUpdate.css">
 </head>
 
 <body>
@@ -17,9 +17,10 @@
             <h2>글수정</h2>
         </div>
     </div>
-    <div class="writeDiv">
-        <form id="frm" method="post" action="/community/boardWrite">
+    <div class=updateDiv>
+        <form id="frm" method="post" action="/community/boardUpdate">
         <input type="hidden" name="pageNum" value="${ pageNum }">
+        <input type="hidden" name="boardNum" value="${ boardVo.boardNum }">
             <table style="border: solid 1px brack;">
                 <tbody>
                     <tr>
@@ -29,7 +30,7 @@
 
                     <tr>
                         <th>작성자</th>
-                        <td><input type="text" name="boardId" value="${ sessionScope.memberId }" readonly></td>
+                        <td><input type="text" name="boardId" value="${ boardVo.boardId }" readonly></td>
                     </tr>
 
                     <tr>
